@@ -1,0 +1,27 @@
+<%- include("../partials/header") %>
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h2 mb-0">CRUD - Tanösvények</h1>
+    <a class="btn btn-success" href="/crud/new">Új tanösvény</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead class="table-success"><tr><th>#</th><th>Név</th><th>Hossz</th><th>Állomás</th><th>Idő</th><th>Vezetés</th><th>Település</th><th></th></tr></thead>
+      <tbody>
+      <% utak.forEach(u => { %>
+        <tr>
+          <td><%= u.azon %></td><td><%= u.nev %></td><td><%= u.hossz %></td><td><%= u.allomas %></td><td><%= u.ido %></td>
+          <td><%= u.vezetes ? "Van" : "Nincs" %></td><td><%= u.telepules ? u.telepules.nev : "-" %></td>
+          <td class="text-nowrap">
+            <a class="btn btn-sm btn-outline-primary" href="/crud/edit/<%= u.azon %>">Szerkesztés</a>
+            <form method="post" action="/crud/delete/<%= u.azon %>" class="d-inline" onsubmit="return confirm('Biztosan törlöd?');">
+              <button class="btn btn-sm btn-outline-danger" type="submit">Törlés</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include("../partials/footer") %>

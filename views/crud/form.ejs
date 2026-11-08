@@ -1,0 +1,29 @@
+<%- include("../partials/header") %>
+<div class="container my-4" style="max-width: 640px;">
+  <h1 class="h2 mb-3"><%= title %></h1>
+  <form method="post" action="<%= action %>" novalidate>
+    <% const f = (name, label, type) => { %>
+      <div class="mb-3">
+        <label class="form-label" for="<%= name %>"><%= label %></label>
+        <input class="form-control <%= errors[name] ? 'is-invalid' : '' %>" type="<%= type %>" id="<%= name %>" name="<%= name %>" value="<%= ut[name] === undefined ? '' : ut[name] %>">
+        <% if (errors[name]) { %><div class="invalid-feedback"><%= errors[name].msg %></div><% } %>
+      </div>
+    <% }; %>
+    <% f("nev", "Név", "text"); f("hossz", "Hossz (km)", "text"); f("allomas", "Állomások száma", "number"); f("ido", "Idő (óra)", "text"); %>
+    <div class="mb-3">
+      <label class="form-label" for="telepulesid">Település</label>
+      <select class="form-select <%= errors.telepulesid ? 'is-invalid' : '' %>" id="telepulesid" name="telepulesid">
+        <option value="">Válassz...</option>
+        <% telepulesek.forEach(t => { %><option value="<%= t.id %>" <%= String(ut.telepulesid) === String(t.id) ? "selected" : "" %>><%= t.nev %></option><% }); %>
+      </select>
+      <% if (errors.telepulesid) { %><div class="invalid-feedback"><%= errors.telepulesid.msg %></div><% } %>
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="vezetes" name="vezetes" <%= ut.vezetes === true || ut.vezetes === "on" ? "checked" : "" %>>
+      <label class="form-check-label" for="vezetes">Van idegenvezetés</label>
+    </div>
+    <button class="btn btn-success" type="submit">Mentés</button>
+    <a class="btn btn-secondary" href="/crud">Mégse</a>
+  </form>
+</div>
+<%- include("../partials/footer") %>
