@@ -1,0 +1,21 @@
+<%- include("partials/header") %>
+<div class="container my-4" style="max-width: 720px;">
+  <h1 class="h2 mb-3">Kapcsolat</h1>
+  <form method="post" action="/kapcsolat" novalidate>
+    <% const f = (name, label, type) => { %>
+      <div class="mb-3">
+        <label class="form-label" for="<%= name %>"><%= label %></label>
+        <input class="form-control <%= errors[name] ? 'is-invalid' : '' %>" type="<%= type %>" id="<%= name %>" name="<%= name %>" value="<%= values[name] || '' %>">
+        <% if (errors[name]) { %><div class="invalid-feedback"><%= errors[name].msg %></div><% } %>
+      </div>
+    <% }; %>
+    <% f("name", "Név", "text"); f("email", "E-mail", "email"); f("subject", "Tárgy", "text"); %>
+    <div class="mb-3">
+      <label class="form-label" for="message">Üzenet</label>
+      <textarea class="form-control <%= errors.message ? 'is-invalid' : '' %>" id="message" name="message" rows="5"><%= values.message || "" %></textarea>
+      <% if (errors.message) { %><div class="invalid-feedback"><%= errors.message.msg %></div><% } %>
+    </div>
+    <button class="btn btn-success" type="submit">Küldés</button>
+  </form>
+</div>
+<%- include("partials/footer") %>

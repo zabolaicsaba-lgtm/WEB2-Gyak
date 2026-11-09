@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+<div class="container my-4">
+  <h1 class="h2 mb-3">Üzenetek</h1>
+  <% if (!messages.length) { %>
+    <p class="text-muted">Még nincs üzenet.</p>
+  <% } else { %>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead class="table-success"><tr><th>Küldés ideje</th><th>Név</th><th>E-mail</th><th>Tárgy</th><th>Üzenet</th></tr></thead>
+      <tbody>
+      <% messages.forEach(m => { %>
+        <tr>
+          <td class="text-nowrap"><%= new Date(m.createdAt).toLocaleString("hu-HU", { timeZone: "Europe/Budapest" }) %></td>
+          <td><%= m.name %></td><td><%= m.email %></td><td><%= m.subject %></td>
+          <td style="white-space: pre-wrap;"><%= m.message %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</div>
+<%- include("partials/footer") %>
