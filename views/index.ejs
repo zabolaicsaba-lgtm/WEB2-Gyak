@@ -1,0 +1,34 @@
+<%- include("partials/header") %>
+<section class="hero text-center">
+  <div class="container">
+    <h1>Fedezd fel a magyar tanösvényeket!</h1>
+    <p class="lead mb-4">A nemzeti park igazgatóságok tanösvényei egy helyen: hossz, állomások, bejárási idő és idegenvezetés.</p>
+    <a href="/adatbazis" class="btn btn-light btn-lg me-2">Tanösvények böngészése</a>
+    <% if (!user) { %><a href="/register" class="btn btn-outline-light btn-lg">Regisztráció</a><% } %>
+  </div>
+</section>
+<div class="container my-5">
+  <div class="row text-center g-4 mb-5">
+    <div class="col-md-4"><div class="stat-number"><%= stats.utCount %></div><div>tanösvény</div></div>
+    <div class="col-md-4"><div class="stat-number"><%= stats.telCount %></div><div>település</div></div>
+    <div class="col-md-4"><div class="stat-number"><%= stats.npCount %></div><div>nemzeti park igazgatóság</div></div>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4"><div class="card h-100 feature-card"><div class="card-body">
+      <h5 class="card-title">Adatbázis</h5>
+      <p class="card-text">Szűrhető lista a tanösvényekről, településekről és nemzeti parkokról.</p>
+      <a href="/adatbazis" class="btn btn-success">Megnézem</a>
+    </div></div></div>
+    <div class="col-md-4"><div class="card h-100 feature-card"><div class="card-body">
+      <h5 class="card-title">Diagram</h5>
+      <p class="card-text">Grafikon a tanösvények számáról és átlagos hosszáról nemzeti parkonként (bejelentkezés után).</p>
+      <a href="/diagram" class="btn btn-success">Megnézem</a>
+    </div></div></div>
+    <div class="col-md-4"><div class="card h-100 feature-card"><div class="card-body">
+      <h5 class="card-title">Kapcsolat</h5>
+      <p class="card-text">Kérdésed van? Küldj üzenetet az oldal üzemeltetőjének.</p>
+      <a href="/kapcsolat" class="btn btn-success">Írok</a>
+    </div></div></div>
+  </div>
+</div>
+<%- include("partials/footer") %>
