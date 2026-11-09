@@ -1,0 +1,33 @@
+<%- include("partials/header") %>
+<div class="container my-4">
+  <h1 class="h2 mb-4">Diagram</h1>
+  <div class="row g-4">
+    <div class="col-lg-6"><div class="card"><div class="card-body">
+      <h2 class="h5">Tanösvények száma nemzeti parkonként</h2>
+      <canvas id="chartDarab"></canvas>
+    </div></div></div>
+    <div class="col-lg-6"><div class="card"><div class="card-body">
+      <h2 class="h5">Átlagos tanösvény-hossz (km)</h2>
+      <canvas id="chartHossz"></canvas>
+    </div></div></div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script>
+  fetch("/diagram/adat")
+    .then((r) => r.json())
+    .then((rows) => {
+      const labels = rows.map((r) => r.nev);
+      new Chart(document.getElementById("chartDarab"), {
+        type: "bar",
+        data: { labels, datasets: [{ label: "Tanösvények száma", data: rows.map((r) => r.darab), backgroundColor: "#2f855a" }] },
+        options: { indexAxis: "y", plugins: { legend: { display: false } } },
+      });
+      new Chart(document.getElementById("chartHossz"), {
+        type: "doughnut",
+        data: { labels, datasets: [{ data: rows.map((r) => r.atlagHossz) }] },
+        options: { plugins: { legend: { position: "bottom" } } },
+      });
+    });
+</script>
+<%- include("partials/footer") %>
