@@ -24,7 +24,7 @@ app.use(
   })
 );
 
-app.locals.authors = "Készítők: [Név 1] ([NEPTUN1]), [Név 2] ([NEPTUN2])";
+app.locals.authors = "Készítők: Jarábik Zsófia (PXJQQ6), Zabolai Csaba (AO1DG3)";
 
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
