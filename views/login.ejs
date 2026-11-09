@@ -1,0 +1,13 @@
+<%- include("partials/header") %>
+<div class="container my-4" style="max-width: 480px;">
+  <h1 class="h2 mb-3">Bejelentkezés</h1>
+  <% if (error) { %><div class="alert alert-danger"><%= error %></div><% } %>
+  <form method="post" action="/login">
+    <div class="mb-3"><label class="form-label" for="login">Felhasználónév</label>
+      <input class="form-control" id="login" name="login" value="<%= values.login || '' %>" required></div>
+    <div class="mb-3"><label class="form-label" for="password">Jelszó</label>
+      <input class="form-control" type="password" id="password" name="password" required></div>
+    <button class="btn btn-success" type="submit">Belépés</button>
+  </form>
+</div>
+<%- include("partials/footer") %>

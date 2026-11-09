@@ -1,0 +1,16 @@
+<%- include("partials/header") %>
+<div class="container my-4" style="max-width: 480px;">
+  <h1 class="h2 mb-3">Regisztráció</h1>
+  <form method="post" action="/register" novalidate>
+    <% const f = (name, label, type, keep) => { %>
+      <div class="mb-3">
+        <label class="form-label" for="<%= name %>"><%= label %></label>
+        <input class="form-control <%= errors[name] ? 'is-invalid' : '' %>" type="<%= type %>" id="<%= name %>" name="<%= name %>" value="<%= keep ? (values[name] || '') : '' %>">
+        <% if (errors[name]) { %><div class="invalid-feedback"><%= errors[name].msg %></div><% } %>
+      </div>
+    <% }; %>
+    <% f("name", "Teljes név", "text", true); f("login", "Felhasználónév", "text", true); f("password", "Jelszó", "password", false); f("password2", "Jelszó újra", "password", false); %>
+    <button class="btn btn-success" type="submit">Regisztráció</button>
+  </form>
+</div>
+<%- include("partials/footer") %>
