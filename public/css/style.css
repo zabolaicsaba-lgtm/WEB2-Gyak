@@ -1,0 +1,9 @@
+.hero {
+  background: linear-gradient(135deg, #14532d 0%, #2f855a 55%, #84cc16 100%);
+  color: #fff;
+  padding: 6rem 0;
+}
+.hero h1 { font-size: calc(2rem + 2vw); font-weight: 800; }
+.feature-card { transition: transform .2s, box-shadow .2s; }
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.15); }
+.stat-number { font-size: 2.5rem; font-weight: 800; color: #2f855a; }
